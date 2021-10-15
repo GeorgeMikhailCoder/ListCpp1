@@ -108,14 +108,5 @@ int main(int argc, char ** argv)
 	one.fromFile(params[0]);
 	applyCommands(params[1], one);
 
-	//  regex a(R"([[:alnum:]]+ [[:digit:]]+)", regex_constants::ECMAScript);
-	//  string str = "adaewe634 89fsd";
-	//  smatch m;
-	//  bool b = regex_search(str, m, a);
-	//  for (int i = 0; i < m.size(); ++i)
-	//  	cout << m[i] << endl;
-
-
-	system("pause");
 	return 0;
 }
