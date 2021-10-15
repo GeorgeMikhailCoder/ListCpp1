@@ -89,9 +89,6 @@ someStruct OneList::getValue()const
 	return *value;
 }
 
-
-
-
 void OneList::append(const someStruct& object)
 {
 	if (begin == nullptr)
@@ -135,7 +132,10 @@ void OneList::append(const someStruct& object, int index)
 void OneList::appendSortVal(const someStruct& object)
 {
 	if (begin == nullptr)
+	{
 		append(object);
+		cout << "Appended  " << object << endl;
+	}
 	else
 	{
 		OneList* curElem = begin;
@@ -152,14 +152,14 @@ void OneList::appendSortVal(const someStruct& object)
 					insertBegin(new OneList(object));
 				else
 					insertBetween(prev, curElem, new OneList(object));
+				cout << "Appended  " << object << endl;
 				break;
 			}
 		}
 		if (curElem == nullptr)
 			append(object);
-
+		cout << "Object " << object << " appended by value" << endl;
 	}
-	cout << "Object " << object << " appended by value" << endl;
 }
 
 void OneList::pop(int index)
@@ -194,158 +194,12 @@ void OneList::pop(int index)
 
 
 }
-//  void OneList::popValue(const int& object)
-//  {
-//  	if (*this==object)
-//  	{
-//  		OneList* c = &removeBegin();
-//  		delete c;
-//  	}
-//  	else
-//  	{
-//  		for (OneList* curList = begin; curList != nullptr; curList = curList->next)
-//  		{
-//  			if (curList->next == nullptr)
-//  			{
-//  				cout << "Index out of range";
-//  				break;
-//  			}
-//  			if (*curList->next==object)
-//  			{
-//  				
-//  				OneList* c = &removeItem(curList, curList->next, curList->next->next);
-//  				delete c;
-//  				break;
-//  			}
-//  		}
-//  
-//  	}
-//  
-//  }
-//  
-//  void OneList::popValue(const string& object)
-//  {
-//  	if (*this == object)
-//  	{
-//  		OneList* c = &removeBegin();
-//  		delete c;
-//  	}
-//  	else
-//  	{
-//  		for (OneList* curList = begin; curList != nullptr; curList = curList->next)
-//  		{
-//  			if (curList->next == nullptr)
-//  			{
-//  				cout << "Index out of range";
-//  				break;
-//  			}
-//  			if (*curList->next == object)
-//  			{
-//  
-//  				OneList* c = &removeItem(curList, curList->next, curList->next->next);
-//  				delete c;
-//  				break;
-//  			}
-//  		}
-//  
-//  	}
-//  }
-//  
-//  void OneList::popValue(const someStruct& object)
-//  {
-//  	if (*this == object)
-//  	{
-//  		OneList* c = &removeBegin();
-//  		delete c;
-//  	}
-//  	else
-//  	{
-//  		for (OneList* curList = begin; curList != nullptr; curList = curList->next)
-//  		{
-//  			if (curList->next == nullptr)
-//  			{
-//  				cout << "Index out of range";
-//  				break;
-//  			}
-//  			if (*curList->next == object)
-//  			{
-//  
-//  				OneList* c = &removeItem(curList, curList->next, curList->next->next);
-//  				delete c;
-//  				break;
-//  			}
-//  		}
-//  
-//  	}
-//  }
-
-OneList OneList::find(const int& object)
-{
-	if (*this == object)
-	{
-		return *new OneList(*this);
-	}
-	else
-	{
-		for (OneList* curList = begin; curList != nullptr; curList = curList->next)
-		{
-			if (*curList == object)
-			{
-				return *new OneList(*curList);
-			}
-		}
-		cout << "Error: Item not found. Empty list returned" << endl;
-	}
-
-	return OneList();
-}
-
-OneList OneList::find(const string& object)
-{
-	if (*this == object)
-	{
-		return *new OneList(*this);
-	}
-	else
-	{
-		for (OneList* curList = begin; curList != nullptr; curList = curList->next)
-		{
-			if (*curList == object)
-			{
-				return *new OneList(*curList);
-			}
-		}
-		cout << "Error: Item not found. Empty list returned" << endl;
-	}
-
-	return OneList();
-}
-
-OneList OneList::find(const someStruct& object)
-{
-	if (*this == object)
-	{
-		return *new OneList(*this);
-	}
-	else
-	{
-		for (OneList* curList = begin; curList != nullptr; curList = curList->next)
-		{
-			if (*curList == object)
-			{
-				return *new OneList(*curList);
-			}
-		}
-		cout << "Error: Item not found. Empty list returned" << endl;
-	}
-
-	return OneList();
-}
 
 int OneList::length()
 {
 	int k = 0;
 	for (OneList* curList = begin; curList != 0; curList = curList->next)++k;
+	cout << "Length of list is " << k << endl;
 	return k;
 }
 
@@ -367,6 +221,35 @@ void OneList::print()
 	}
 }
 
+void OneList::fromFile(string fileName)
+{
+	fstream f(fileName);
+	if (!f.is_open())
+	{
+		cout << "Error opening file" << endl;
+		exit(0);
+	}
+	else
+	{
+		string str;
+		int val;
+		regex a(R"([[:digit:]]+)");
+		smatch m;
+		for (; !f.eof();)
+		{
+			f >> str;
+			if (!regex_search(str, m, a))
+			{
+				cout << "Error reading item from file" << endl;
+				continue;
+			}
+			val = stoi(m[0]);
+			f >> str;
+			append(someStruct(val, str));
+		}
+	}
+}
+
 bool OneList::isItemEq(const OneList& Right)
 {
 	return *value==*Right.value;
@@ -384,15 +267,6 @@ ostream& operator<<(ostream& out, const OneList& R)
 	}
 	
 
-	//  out << "List of:" << endl;
-	//  for (OneList* curList = R.begin; curList != nullptr; curList = curList->next)
-	//  {
-	//  	out << "Item = " << curList << "  Value" ;
-	//  	out << *(curList->value);
-	//  	out<< "  Next = " << curList->next << endl;
-	//  	
-	//  }
-	//  out << "end list" << endl << endl;;
 	return out;
 }
 

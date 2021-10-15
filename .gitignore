@@ -2,3 +2,5 @@ out
 .vs
 Tests
 CMakeFiles
+Commands.txt
+List.txt

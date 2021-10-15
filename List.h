@@ -1,4 +1,6 @@
 #include<iostream>
+#include<fstream>
+#include<regex>
 #include"someStruct.h"
 using namespace std;
 
@@ -71,6 +73,7 @@ public:
 		if (*this == object)
 		{
 			OneList* c = &removeBegin();
+			cout << "Deleted  " << *c << endl;
 			delete c;
 		}
 		else
@@ -79,13 +82,14 @@ public:
 			{
 				if (curList->next == nullptr)
 				{
-					cout << "Index out of range";
+					cout << "Index out of range while deliting object \'"<<object<<"\'" << endl;
 					break;
 				}
 				if (*curList->next == object)
 				{
 
 					OneList* c = &removeItem(curList, curList->next, curList->next->next);
+					cout << "Deleted  " << *c << endl;
 					delete c;
 					break;
 				}
@@ -93,17 +97,35 @@ public:
 
 		}
 	}
-	//  void popValue(const int& object);
-	//  void popValue(const string& object);
-	//  void popValue(const someStruct& object);
-	
-	OneList find(const int& object);
-	OneList find(const string& object);
-	OneList find(const someStruct& object);
+
+	template<typename T>OneList find(const T& object)
+	{
+		if (*this == object)
+		{
+			cout << "For  "<<object<<"  found  " << *this << endl;
+			return *new OneList(*this);
+		}
+		else
+		{
+			for (OneList* curList = begin; curList != nullptr; curList = curList->next)
+			{
+				if (*curList == object)
+				{
+					cout << "For  \'" << object << "\'  found  " << *curList << endl;
+					return *new OneList(*curList);
+				}
+			}
+			cout << "Error: Item not found. Empty list returned" << endl;
+		}
+
+		return OneList();
+	}
 	
 	int length();
-
 	void print();
+
+	void fromFile(string fileName);
+
 
 	bool isItemEq(const OneList& Right);
 
