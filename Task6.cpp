@@ -8,21 +8,17 @@ using namespace std;
 
 int main()
 {
-	OneList someList;
+	OneList one;
+
+	one.append(someStruct(1, "qwe"));
+	one.append(someStruct(2, "asd"));
+	one.append(someStruct(3, "uio"));
+	one.append(someStruct(5, "vbn"));
 	
-	someList.print();
-	someList.append(someStruct(1, "asd"));
-	someList.append(someStruct(2, "qwe"));
-	someList.append(someStruct(3, "dcv"));
-	someList.print();
-	cout << someList[1] << endl;
+	one.popValue(2);
+	one.print();
+	
 
-	OneList a = someList[1];
-	OneList b;
-	b = someList[1];
-
-
-	cout << a << endl;
 	system("pause");
 	return 0;
 }
