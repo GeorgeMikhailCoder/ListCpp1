@@ -31,7 +31,6 @@ void test0_operatorEq()
 
 }
 
-
 void test1_sortVal()
 {
 	OneList one, two;

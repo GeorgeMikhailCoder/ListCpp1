@@ -1,16 +1,10 @@
+#pragma once
+
 #include<iostream>
 #include<fstream>
 #include<regex>
 #include"someStruct.h"
 using namespace std;
-
-template<class T>
-concept able = requires ()
-{
-	std::_Integer_like<T> || 
-		typeid(T).name() == "string" ||
-		typeid(T).name() == "someStruct";
-};
 
 class OneList
 {

@@ -89,6 +89,8 @@ string* getParams(int argc, char* argv[])
 	if (argc != 3)
 	{
 		cout << "Error in console params\n\nUsage:\ntask6.exe path1 path2" << endl;
+		char c;
+		cin >> c;
 		exit(0);
 	}
 	else
