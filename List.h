@@ -136,5 +136,9 @@ public:
 	bool operator == (const someStruct& R);
 	bool operator == (const string& R);
 	bool operator == (const int& R);
+	bool operator != (const OneList& R)
+	{
+		return !(operator ==(R));
+	}
 };
 
