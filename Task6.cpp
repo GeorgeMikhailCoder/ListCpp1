@@ -23,8 +23,6 @@ int getVal(fstream& f)
 
 void applyCommands(string fileName, OneList& one)
 {
-
-	//fileName = "C:\\Users\\george\\Documents\\Projects (Visual Studio)\\Сириус\\Лаб1\\Task6\\Commands.txt";
 	fstream f(fileName);
 	if (!f.is_open())
 	{

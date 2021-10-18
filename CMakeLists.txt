@@ -7,7 +7,7 @@ set (CMAKE_CXX_STANDARD 20)
 project ("Task6")
 
 enable_testing()
-add_subdirectory(tests)
+add_subdirectory(Tests)
 
 # Add source to this project's executable.
 add_executable (Task6 "Task6.cpp" "Task6.h" "List.h" "List.cpp" "someStruct.h")

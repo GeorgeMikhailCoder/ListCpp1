@@ -109,5 +109,7 @@ int main()
 	test2_popVal();
 	test3_find();
 	test4_length();
+	char s;
+	cin >> s;
 	return 0;
 }

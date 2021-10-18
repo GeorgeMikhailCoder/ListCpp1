@@ -6,4 +6,4 @@ include_directories(myTests "..")
 
 add_executable (myTests Tests.cpp Tests.h ../List.h ../List.cpp)
 
-add_test(NAME myTests COMMAND Tests)
+add_test(NAME myTests COMMAND myTests)
