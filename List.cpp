@@ -226,7 +226,7 @@ void OneList::fromFile(string fileName)
 	fstream f(fileName);
 	if (!f.is_open())
 	{
-		cout << "Error opening file" << endl;
+		cout << "Error opening file: "<<fileName << endl;
 		exit(0);
 	}
 	else

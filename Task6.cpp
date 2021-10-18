@@ -24,12 +24,12 @@ int getVal(fstream& f)
 void applyCommands(string fileName, OneList& one)
 {
 
-	fileName = "C:\\Users\\george\\Documents\\Projects (Visual Studio)\\Сириус\\Лаб1\\Task6\\Commands.txt";
+	//fileName = "C:\\Users\\george\\Documents\\Projects (Visual Studio)\\Сириус\\Лаб1\\Task6\\Commands.txt";
 	fstream f(fileName);
-	
+	system("pause");
 	if (!f.is_open())
 	{
-		cout << "Error opening file" << endl;
+		cout << "Error opening file: " << fileName << endl;
 		exit(0);
 	}
 	else
@@ -106,6 +106,7 @@ string* getParams(int argc, char* argv[])
 int main(int argc, char ** argv)
 {
 	string* params = getParams(argc, argv);
+	cout << params[0] << endl <<params[1] << endl;
 	OneList one;
 	one.fromFile(params[0]);
 	applyCommands(params[1], one);
