@@ -26,7 +26,6 @@ void applyCommands(string fileName, OneList& one)
 
 	//fileName = "C:\\Users\\george\\Documents\\Projects (Visual Studio)\\Сириус\\Лаб1\\Task6\\Commands.txt";
 	fstream f(fileName);
-	system("pause");
 	if (!f.is_open())
 	{
 		cout << "Error opening file: " << fileName << endl;
